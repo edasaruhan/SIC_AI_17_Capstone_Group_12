@@ -1,0 +1,12 @@
+# Private settings, environments and local generated files (all subdirectories)
+**/.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+runtime/
+*.log
+*.log.*

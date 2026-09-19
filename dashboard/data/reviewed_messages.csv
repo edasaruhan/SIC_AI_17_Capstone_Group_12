@@ -1,0 +1,209 @@
+﻿,CustomerID,ActualChurn,PredictedChurn,RiskScore,Tenure,PreferredLoginDevice,CityTier,WarehouseToHome,PreferredPaymentMode,Gender,HourSpendOnApp,NumberOfDeviceRegistered,PreferedOrderCat,SatisfactionScore,MaritalStatus,NumberOfAddress,Complain,OrderAmountHikeFromlastYear,CouponUsed,OrderCount,DaySinceLastOrder,CashbackAmount,SegmentNumber,RiskSegment,Decile,StaticAction,SelectedAction,MarketingMessageRequired,ComplaintHistoryFlag,ServiceReviewStatus,MessageTheme,OfferDetailsRequired,OfferDetailsAvailable,MessagePreparationStatus,ScenarioSelectedSuccessPercent,ScenarioStaticSuccessPercent,CurrentMarketingPrompt,DraftType,GeneratedMessage,GenerationStatus,GenerationError,ReviewStatus,ReviewedMessage,ReviewNote,HumanApprovalStatus,DemoReady
+0,50073,0,0,0.7421162,15.0,Computer,1,27.0,Credit Card,Female,2.0,3,Laptop & Accessory,3,Married,3,0,16.0,0.0,1.0,2.0,152.65,4,4 - Düşük-Orta Risk,7,Etkileşim Mesajı,Etkileşim Mesajı,True,False,Geçmiş şikâyet işareti yok,Yeniden Etkileşim,False,False,Genel iletişim taslağı hazırlanabilir,65.0,65.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""Etkileşim Mesajı"",
+  ""mesaj_temasi"": ""Yeniden Etkileşim"",
+  ""tercih_edilen_kategori"": ""bilgisayar ve aksesuar"",
+  ""gecmis_sikayet_isareti"": false,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Bilgisayar ve aksesuar kategorisindeki ürünlerimizi dilediğiniz zaman inceleyebilirsiniz. Her türlü sorunuz ve talebiniz için bizimle her zaman iletişime geçebilirsiniz.,Üretildi,,Asistan incelemesi tamamlandı,Bilgisayar ve aksesuar kategorisindeki ürünlerimizi dilediğiniz zaman inceleyebilirsiniz. Her türlü sorunuz ve talebiniz için bizimle her zaman iletişime geçebilirsiniz.,Paylaşılan metin incelendi; belirgin bir kural ihlali görülmedi.,Onay bekliyor,True
+1,52581,0,0,0.7385896,19.0,Mobile Phone,3,8.0,Debit Card,Male,3.0,3,Fashion,1,Married,5,1,12.0,0.0,1.0,3.0,203.68,4,4 - Düşük-Orta Risk,7,Etkileşim Mesajı,Etkileşim Mesajı,True,True,Geçmiş şikâyetin durumu kontrol edilmeli,Empatik Şikâyet Yaklaşımı,False,False,Genel iletişim taslağı hazırlanabilir,65.0,65.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""Etkileşim Mesajı"",
+  ""mesaj_temasi"": ""Empatik Şikâyet Yaklaşımı"",
+  ""tercih_edilen_kategori"": ""moda"",
+  ""gecmis_sikayet_isareti"": true,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Moda alışverişlerinizde yaşadığınız olumsuz deneyimden dolayı üzüntü duyuyoruz. Görüş ve taleplerinizi paylaşmak için dilediğiniz zaman bizimle iletişime geçebilirsiniz.,Üretildi,,Asistan incelemesiyle düzenlendi,Geçmişte yaşadığınız olumsuz deneyim için üzgünüz. Dilerseniz moda kategorimizdeki ürünleri yeniden inceleyebilirsiniz.,Şikâyetin tercih edilen kategoriyle ilgili olduğu yönündeki doğrulanmamış ilişki kaldırıldı.,Onay bekliyor,True
+2,55067,0,0,2.9670117,8.0,Mobile Phone,1,27.0,COD,Female,3.0,2,Mobile Phone,3,Married,2,0,18.0,2.0,2.0,1.0,150.85,6,6 - Orta Risk,5,Sadakat Teklifi,Sadakat Teklifi,True,False,Geçmiş şikâyet işareti yok,Sadakat ve Teşekkür,True,False,Teklif için onaylı kampanya bilgisi gerekli,70.0,70.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""Sadakat Teklifi"",
+  ""mesaj_temasi"": ""Sadakat ve Teşekkür"",
+  ""tercih_edilen_kategori"": ""cep telefonu"",
+  ""gecmis_sikayet_isareti"": false,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Alışverişlerinizde bizi tercih ettiğiniz için teşekkür ederiz. Cep telefonu kategorimizle ilgili her türlü sorunuz için dilediğiniz zaman bizimle iletişime geçebilirsiniz.,Üretildi,,Asistan incelemesi tamamlandı,Alışverişlerinizde bizi tercih ettiğiniz için teşekkür ederiz. Cep telefonu kategorimizle ilgili her türlü sorunuz için dilediğiniz zaman bizimle iletişime geçebilirsiniz.,Paylaşılan metin incelendi; belirgin bir kural ihlali görülmedi.,Onay bekliyor,True
+3,50418,0,0,2.9599876,11.0,Mobile Phone,1,6.0,Debit Card,Female,2.0,3,Fashion,3,Single,5,1,14.0,0.0,1.0,0.0,178.61,6,6 - Orta Risk,5,Sadakat Teklifi,Sadakat Teklifi,True,True,Geçmiş şikâyetin durumu kontrol edilmeli,Empatik Şikâyet Yaklaşımı,True,False,Teklif için onaylı kampanya bilgisi gerekli,70.0,70.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""Sadakat Teklifi"",
+  ""mesaj_temasi"": ""Empatik Şikâyet Yaklaşımı"",
+  ""tercih_edilen_kategori"": ""moda"",
+  ""gecmis_sikayet_isareti"": true,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Moda alışverişlerinizde yaşadığınız olumsuz deneyim nedeniyle üzgünüz. Her türlü sorunuz ve talebiniz için dilediğiniz zaman bizimle iletişime geçebilirsiniz.,Üretildi,,Asistan incelemesiyle düzenlendi,"Geçmişte yaşadığınız olumsuz deneyim için üzgünüz. Bizi tercih ettiğiniz için teşekkür eder, moda kategorimizdeki ürünleri incelemeye davet ederiz.",Şikâyetin tercih edilen kategoriyle ilgili olduğu yönündeki doğrulanmamış ilişki kaldırıldı.,Onay bekliyor,True
+4,53697,1,1,99.850426,1.0,Computer,1,35.0,Debit Card,Male,4.0,5,Laptop & Accessory,5,Single,5,0,21.0,1.0,2.0,4.0,167.84,10,10 - Kritik Risk,1,Win-Back Teklifi,Win-Back Teklifi,True,False,Geçmiş şikâyet işareti yok,Geri Kazanım,True,False,Teklif için onaylı kampanya bilgisi gerekli,88.0,88.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""Win-Back Teklifi"",
+  ""mesaj_temasi"": ""Geri Kazanım"",
+  ""tercih_edilen_kategori"": ""bilgisayar ve aksesuar"",
+  ""gecmis_sikayet_isareti"": false,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Bilgisayar ve aksesuar alışverişlerinizde sizi yeniden aramızda görmekten mutluluk duyarız. İhtiyaçlarınıza uygun seçenekleri keşfetmek için sitemizi her zaman ziyaret edebilirsiniz.,Üretildi,,Asistan incelemesi tamamlandı,Bilgisayar ve aksesuar alışverişlerinizde sizi yeniden aramızda görmekten mutluluk duyarız. İhtiyaçlarınıza uygun seçenekleri keşfetmek için sitemizi her zaman ziyaret edebilirsiniz.,Paylaşılan metin incelendi; belirgin bir kural ihlali görülmedi.,Onay bekliyor,True
+5,54023,1,1,99.986626,1.0,Computer,1,31.0,Debit Card,Male,4.0,5,Mobile Phone,1,Single,3,1,25.0,2.0,2.0,1.0,149.39,10,10 - Kritik Risk,1,Win-Back Teklifi,Win-Back Teklifi,True,True,Geçmiş şikâyetin durumu kontrol edilmeli,Empatik Şikâyet Yaklaşımı,True,False,Teklif için onaylı kampanya bilgisi gerekli,88.0,88.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""Win-Back Teklifi"",
+  ""mesaj_temasi"": ""Empatik Şikâyet Yaklaşımı"",
+  ""tercih_edilen_kategori"": ""cep telefonu"",
+  ""gecmis_sikayet_isareti"": true,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Geçmiş deneyiminizde beklentinizi karşılayamadığımız için üzgünüz. Cep telefonu tercihleriniz ve tüm sorularınız için bizimle dilediğiniz zaman iletişime geçebilirsiniz.,Üretildi,,Asistan incelemesi tamamlandı,Geçmiş deneyiminizde beklentinizi karşılayamadığımız için üzgünüz. Cep telefonu tercihleriniz ve tüm sorularınız için bizimle dilediğiniz zaman iletişime geçebilirsiniz.,Paylaşılan metin incelendi; belirgin bir kural ihlali görülmedi.,Onay bekliyor,True
+6,54322,0,0,33.757008,1.0,Computer,1,16.0,Credit Card,Male,3.0,4,Mobile Phone,4,Married,8,0,19.0,3.0,3.0,3.0,145.24,8,8 - Yüksek Risk,3,İndirim Teklifi,İndirim Teklifi,True,False,Geçmiş şikâyet işareti yok,Teklif Bilgisi Bekleniyor,True,False,Teklif için onaylı kampanya bilgisi gerekli,78.0,78.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""İndirim Teklifi"",
+  ""mesaj_temasi"": ""Teklif Bilgisi Bekleniyor"",
+  ""tercih_edilen_kategori"": ""cep telefonu"",
+  ""gecmis_sikayet_isareti"": false,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Cep telefonu alışverişlerinizle ilgili sorularınızı yanıtlamaktan ve size yardımcı olmaktan memnuniyet duyarız. Dilediğiniz zaman bizimle iletişime geçerek detaylı bilgi alabilirsiniz.,Üretildi,,Asistan incelemesi tamamlandı,Cep telefonu alışverişlerinizle ilgili sorularınızı yanıtlamaktan ve size yardımcı olmaktan memnuniyet duyarız. Dilediğiniz zaman bizimle iletişime geçerek detaylı bilgi alabilirsiniz.,Paylaşılan metin incelendi; belirgin bir kural ihlali görülmedi.,Onay bekliyor,True
+7,52235,0,0,33.618454,,Phone,1,20.0,Debit Card,Male,2.0,3,Mobile,5,Married,2,1,14.0,5.0,6.0,8.0,122.35,8,8 - Yüksek Risk,3,İndirim Teklifi,İndirim Teklifi,True,True,Geçmiş şikâyetin durumu kontrol edilmeli,Empatik Şikâyet Yaklaşımı,True,False,Teklif için onaylı kampanya bilgisi gerekli,78.0,78.0,"Bir e-ticaret CRM uzmanı olarak Türkçe bir iletişim taslağı yaz.
+
+Kurallar:
+- Yalnızca müşteriye yönelik metni yaz; başlık veya açıklama ekleme.
+- En fazla iki kısa cümle kullan.
+- Profesyonel ve doğal bir dil kullan; müşteriye ""siz"" diye hitap et.
+- Müşteri adı, indirim, fiyat, kupon, kampanya tarihi veya avantaj uydurma.
+- Mevcut fırsat, sadakat programı, puan veya hesaba tanımlanan teklif
+  bulunduğunu söyleme; bunlara dair onaylı bilgi yok.
+- Önerilen aksiyon bir teklif gerektirse de bu metinde teklif sunma.
+  Genel bir iletişim daveti oluştur.
+- Geçmiş şikâyet işareti varsa önce kısa ve empatik bir ifade kullan.
+  Şikâyetin hâlâ açık olduğunu, çözüldüğünü veya işlem başlatıldığını söyleme.
+- Kategori belirtilmişse doğal biçimde kullan; belirtilmemişse kategori uydurma.
+- Risk, segment, churn, tahmin veya müşterinin izlendiğinden bahsetme.
+- Yeni ürün, stok, yeni sezon veya hizmet iyileştirmesi iddiası ekleme.
+
+Müşteri bağlamı:
+{
+  ""onerilen_aksiyon"": ""İndirim Teklifi"",
+  ""mesaj_temasi"": ""Empatik Şikâyet Yaklaşımı"",
+  ""tercih_edilen_kategori"": ""cep telefonu"",
+  ""gecmis_sikayet_isareti"": true,
+  ""onayli_kampanya_bilgisi"": null,
+  ""uretim_amaci"": ""Teklif içermeyen iletişim taslağı""
+}",Teklif içermeyen iletişim taslağı,Geçmişte yaşadığınız olumsuz deneyim nedeniyle üzgün olduğumuzu belirtmek isteriz. Cep telefonu kategorisindeki ihtiyaçlarınız ve sorularınız için dilediğiniz zaman bizimle iletişime geçebilirsiniz.,Üretildi,,Asistan incelemesi tamamlandı,Geçmişte yaşadığınız olumsuz deneyim nedeniyle üzgün olduğumuzu belirtmek isteriz. Cep telefonu kategorisindeki ihtiyaçlarınız ve sorularınız için dilediğiniz zaman bizimle iletişime geçebilirsiniz.,Paylaşılan metin incelendi; belirgin bir kural ihlali görülmedi.,Onay bekliyor,True
