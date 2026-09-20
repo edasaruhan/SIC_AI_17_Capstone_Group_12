@@ -1,94 +1,158 @@
-# Retain — Canlı müşteri analizi ve Gemini mesaj taslağı
+# Retain — Yapay Zekâ Destekli Müşteri Kaybı Yönetim Sistemi
 
-Samsung Innovation Campus · Grup 12
+Samsung Innovation Campus — AI in Marketing
+**Capstone Projesi · Grup 12**
 
-Retain, kaydedilmiş XGBoost modeliyle müşteri riskini hesaplayan bir Streamlit dashboard'udur. Aksiyon önerileri simülasyona dayanır. Gemini yalnızca kullanıcı düğmeye bastığında iletişim taslağı üretir; gerçek müşteriye gönderim yapılmaz.
+## Canlı Dashboard
 
-## Gereksinimler ve Windows kurulumu
+### [Dashboard’u aç: retain-grup12.streamlit.app](https://retain-grup12.streamlit.app)
 
-**Python 3.12 kullanın.** Paket sürümleri `requirements.txt` içinde sabittir. Komutları bu README'nin bulunduğu uygulama klasöründe çalıştırın (grup deposunda `dashboard/`).
+Uygulama giriş parolası, öğretim görevlileriyle ayrıca paylaşılmaktadır. API anahtarı veya uygulama parolası bu depoda saklanmamaktadır.
+
+## Proje Hakkında
+
+**Retain**, e-ticaret müşterilerinin kayıp eğilimini analiz eden ve CRM ekiplerine uygulanabilir aksiyon önerileri sunan uçtan uca bir karar destek sistemidir.
+
+Sistem:
+
+* Hazır XGBoost modeliyle müşteri risk skorunu hesaplar.
+* Müşterileri 10 risk segmentine ayırır.
+* Risk segmentine göre CRM aksiyonu önerir.
+* Thompson Sampling simülasyonuyla aksiyon politikasını değerlendirir.
+* Müşterinin kategorisi ve şikâyet geçmişine göre Gemini ile Türkçe iletişim taslağı oluşturur.
+* Model performansı, segmentler, aksiyonlar ve mesaj örneklerini dashboard üzerinde gösterir.
+
+Üretilen mesajlar insan incelemesi bekleyen taslaklardır ve gerçek müşterilere otomatik olarak gönderilmez. Aksiyon sonuçları varsayımsal simülasyona dayanır; gerçek kampanya etkisi veya nedensel sonuç olarak değerlendirilmemelidir.
+
+## Sistem Akışı
+
+1. Dashboard üzerinden bir müşteri seçilir.
+2. Müşterinin ham özellikleri hazır XGBoost modeline gönderilir.
+3. Risk skoru ve churn tahmini hesaplanır.
+4. Müşteri risk segmentine atanır.
+5. Segmente uygun CRM aksiyonu önerilir.
+6. Kullanıcının onayıyla Gemini API çağrılır ve Türkçe iletişim taslağı hazırlanır.
+7. Mesaj, insan incelemesi bekleyen taslak olarak gösterilir.
+
+## Model Sonuçları
+
+Model, 4.504 eğitim ve 1.126 test müşterisi kullanılarak değerlendirilmiştir.
+
+| Metrik    | Test sonucu |
+| --------- | ----------: |
+| Accuracy  |      0.9769 |
+| Precision |      0.8942 |
+| Recall    |      0.9789 |
+| F1        |      0.9347 |
+| ROC-AUC   |      0.9975 |
+
+Test kümesi karmaşıklık matrisi:
+
+|                   | Tahmin: Churn Yok | Tahmin: Churn Var |
+| ----------------- | ----------------: | ----------------: |
+| Gerçek: Churn Yok |               914 |                22 |
+| Gerçek: Churn Var |                 4 |               186 |
+
+Model tahminleri, proje notebook’undaki 1.126 referans tahminle karşılaştırılmış ve sınıf tahminlerinin tamamının eşleştiği doğrulanmıştır.
+
+## Aksiyon Politikası
+
+Risk segmentlerine göre kullanılan CRM aksiyonları:
+
+| Risk segmenti | Önerilen aksiyon |
+| ------------- | ---------------- |
+| 1–3           | Aksiyon Yok      |
+| 4             | Etkileşim Mesajı |
+| 5–6           | Sadakat Teklifi  |
+| 7–8           | İndirim Teklifi  |
+| 9–10          | Win-Back Teklifi |
+
+Thompson Sampling simülasyonunda statik politikanın beklenen başarı oranı yaklaşık **%70,01**, öğrenilen politikanın beklenen başarı oranı ise yaklaşık **%74,81** olarak hesaplanmıştır. Bu değerler tanımlanan senaryo olasılıklarına dayanır ve gerçek müşteri davranışı üzerinde ölçülmüş kampanya sonucu değildir.
+
+## Kullanılan Teknolojiler
+
+* Python 3.12
+* Streamlit
+* XGBoost
+* scikit-learn
+* pandas ve NumPy
+* Gemini API
+* SQLite
+* GitHub
+* Streamlit Community Cloud
+
+## Proje Yapısı
+
+```text
+dashboard/
+├── app.py                 # Streamlit dashboard
+├── service.py             # Tahmin, segment, aksiyon ve Gemini işlemleri
+├── features.py            # Özellik hazırlama fonksiyonları
+├── models/                # Hazır model ve model bilgileri
+├── data/                  # Dashboard veri dosyaları
+├── requirements.txt       # Python bağımlılıkları
+├── test_service.py        # Çevrimdışı servis testleri
+├── validate_model.py      # Model tahmin doğrulaması
+├── DEPLOYMENT.md          # Dağıtım ve güvenlik notları
+└── README.md              # Ayrıntılı dashboard belgesi
+```
+
+## Yerel Kurulum
+
+**Python 3.12** gereklidir. Windows PowerShell’de depo kökünden:
 
 ```powershell
+cd dashboard
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-if (-not (Test-Path .streamlit/secrets.toml)) {
-    Copy-Item secrets.example.toml .streamlit/secrets.toml
-}
+
+Copy-Item secrets.example.toml .streamlit/secrets.toml
 notepad .streamlit/secrets.toml
+
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Yerel editörde `GEMINI_API_KEY` ve `APP_PASSWORD` yer tutucularını değiştirin. Anahtarı veya parolayı GitHub'a, sohbete ya da loglara koymayın. `GEMINI_MODEL` hesabınızın erişebildiği model adı olmalıdır. `DAILY_REQUEST_LIMIT` günlük deneme sınırıdır; örnek dosyada 10'dur, mevcut yerel kurulumda kullanıcı isteğiyle 50 yapılmıştır. Bulut ayarını ayrıca seçin.
+Yerel ayar dosyası aşağıdaki yapıda olmalıdır:
 
-```powershell
-.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
+```toml
+GEMINI_API_KEY = "API_ANAHTARINIZ"
+GEMINI_MODEL = "gemini-3.6-flash"
+DAILY_REQUEST_LIMIT = 50
+APP_PASSWORD = "UYGULAMA_PAROLANIZ"
 ```
 
-Yerel adres: http://127.0.0.1:8501 . Sonraki açılışlarda `BASLAT.bat` kullanılabilir. Sanal ortam kurulu Python 3.12'ye bağlıdır; başka bilgisayara kopyalamayın.
+Gerçek `secrets.toml` dosyası GitHub’a yüklenmemelidir. İlk kurulumdan sonra Windows’ta `dashboard/BASLAT.bat` dosyasıyla uygulama başlatılabilir.
 
-Linux/macOS'ta uygulama klasöründe:
+Yerel adres:
 
-```bash
-python3.12 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-[ -f .streamlit/secrets.toml ] || cp secrets.example.toml .streamlit/secrets.toml
-# secrets.toml dosyasını yerel editörde doldurun.
-.venv/bin/python -m streamlit run app.py --server.address 127.0.0.1
+```text
+http://127.0.0.1:8501
 ```
 
-## Canlı demo
+## Kontroller
 
-1. Belirlediğiniz uygulama parolasıyla giriş yapın.
-2. Canlı müşteri analizi ekranında 54023 numaralı müşteriyi seçip **Risk analizi yap** düğmesine basın. Bu işlem yereldir.
-3. **Gemini ile mesaj üret** düğmesine yalnızca bir canlı API isteği yapmak istediğinizde basın. Aynı prompt/model sonucu varsa önbellekten gelir.
-4. Taslağı insan incelemesinden geçirin. Uygulama e-posta, SMS veya başka bir kanaldan müşteriye gönderim yapmaz.
-5. Model performansı ve Aksiyon simülasyonu sayfalarını inceleyin; simülasyon sonuçlarını gerçek kampanya başarısı olarak sunmayın.
-
-Kullanıcı, yerel dashboard üzerinden canlı Gemini üretiminin başarılı olduğunu doğruladı. Teslim hazırlığında yeni ücretli API testi yapılmadı. Bulut yayını henüz yapılmadı.
-
-## Model ve çevrimdışı doğrulama
-
-- `features.py`: 18 ham sütundan 21 özellik oluşturur; ön işleme modeli pipeline içindedir.
-- `models/final_pipeline.joblib`: orijinal hazır model; Linux'ta uygulama bunu seçer.
-- `models/final_pipeline.windows.joblib`: Windows uyumlu kayıt. `app.py` Windows'ta bu dosyayı seçer; orijinal korunmuştur.
-- `convert_model_windows.py`: mevcut ağaçları yeniden eğitim yapmadan Windows kayıt biçimine dönüştürür. Normal kullanımda çalıştırılması gerekmez.
-- `models/metadata.json`: eğitim ortamı ve sabit test metrikleri.
-- `data/`: uygulama için müşteri, referans, simülasyon ve kayıtlı örnek CSV'leri.
-
-Python 3.12 ve sabitlenmiş sklearn/XGBoost sürümleri korunmalıdır. Windows'ta 1.126 referans sınıf tahmini eşleşti; en büyük skor farkı 0,000003811 / 100 oldu. Linux seçim yolu ve bağımlılık dosyaları incelendi; hazırlık bilgisayarında WSL/Linux bulunmadığından Linux üzerinde gerçek model yükleme testi henüz yapılmadı. İlk bulut açılışında model yüklemesi ve yerel risk analizi doğrulanmalıdır. Joblib dosyaları yalnızca güvenilen kaynaklardan yüklenmelidir.
+Dashboard klasöründe aşağıdaki komutlar çalıştırılabilir:
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest test_service -v
 .\.venv\Scripts\python.exe validate_model.py
 ```
 
-Linux için `.venv/bin/python` kullanın. Bu kontroller API isteği yapmaz ve model eğitmez. `train_model.py` yalnızca arşiv/tekrarlanabilirlik için bulunur; sunucu başlangıcında çalışmaz, yeniden eğitim bu teslimin kapsamı değildir.
+Bu kontroller ücretli API çağrısı yapmaz ve modeli yeniden eğitmez.
 
-## Streamlit Community Cloud
+## Güvenlik ve Sınırlamalar
 
-Grup deposu düzeninde giriş dosyası **`dashboard/app.py`** olacaktır. `dashboard/requirements.txt` giriş dosyasıyla aynı dizindedir. Depo kökündeki `.streamlit/config.toml` bulut içindir; `dashboard/.streamlit/config.toml` uygulama klasöründen yerel başlatmayı destekler. İkisinde de `server.address=127.0.0.1` bulunmaz; yerel erişim kısıtı başlatma komutunda uygulanır. Uygulama veri/model yollarını `app.py` dosyasının konumuna göre çözer.
+* Gemini API anahtarı ve uygulama parolası Streamlit Secrets ile saklanır.
+* Gizli bilgiler GitHub deposuna dahil edilmez.
+* Gemini yalnızca kullanıcı mesaj üretme düğmesine bastığında çağrılır.
+* Günlük uygulama içi istek sınırı uygulanır.
+* Mesajlar gerçek müşterilere otomatik gönderilmez.
+* Risk segmentleri, test müşterileri arasındaki göreli sıralamaya dayanır.
+* Risk skoru kalibre edilmiş bir olasılık olarak yorumlanmamalıdır.
+* Streamlit Community Cloud üzerindeki geçici işlem kayıtları yeniden başlatmalarda sıfırlanabilir.
 
-Yayımlama yetkisi verildiğinde:
+## Belgeler
 
-1. Streamlit Community Cloud'da hedef GitHub deposunu ve yayımlanacak dalı seçin.
-2. Main file path: `dashboard/app.py`.
-3. Advanced settings → Python version: **3.12**.
-4. Secrets alanına `secrets.example.toml` yapısını kullanarak gerçek değerleri yalnızca platform arayüzünde girin. Güçlü `APP_PASSWORD` tanımlayın. Gerçek `secrets.toml` dosyasını depoya eklemeyin.
-5. Açılıştan sonra giriş ekranını, model yüklemesini ve risk analizini doğrulayın. Gemini düğmesi ücretli çağrı yapabilir; otomatik testte kullanmayın.
-
-Bu klasör tek başına ayrı depo yapılırsa giriş yolu `app.py` olur. Grup deposu teslimi için `dashboard/app.py` kullanılır.
-
-[Resmî yayımlama ve Python seçimi](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) · [Secrets yönetimi](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management) · [Dosya ve bağımlılık düzeni](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies)
-
-## Sınırlamalar ve maliyet
-
-Aksiyon sonuçları varsayımsal başarı olasılıklarıyla simülasyondur; gerçek churn azalması, kâr veya kampanya etkisi kanıtı değildir. Risk skoru kalibre edilmiş olasılık değildir. Dilimler sabit test grubuna göredir; test kümesi geliştirme sırasında incelenmiştir. Yeni etiketli veri olmadığı için canlı F1 veya drift izleme yapılmaz.
-
-Mesajlar en fazla iki kısa cümle istenen taslaklardır. API çıktı üst sınırı 2048 token, düşünme düzeyi low'dur. Otomatik tekrar ve yönlendirme takibi yoktur; SSL doğrulaması açıktır, güvenlik filtreleri kapatılmaz. Yalnızca engellenmemiş, `STOP` ile tamamlanan, boş olmayan mesajlar kaydedilir. Hatalarda yalnız izin verilen durum kodları ve sayısal token kullanımı gösterilir.
-
-Günlük sınır UTC gününe göre uygulama genelindedir; başarısız denemeler de sayılır. Bu sınır parasal harcama garantisi değildir. SQLite `runtime/` altında olayları ve prompt/model önbelleğini tutar; bunlar GitHub'a taşınmaz. Community Cloud yeniden başlatma/yeniden dağıtımında yerel dosyalar kaybolabilir; kota ve önbellek kalıcı depoya taşınmadan üretim güvencesi sunmaz.
-
-APP_PASSWORD ortak bir parola kapısıdır; kullanıcı bazlı yetkilendirme değildir. Kayıtlı örnekler ve müşterilere ait veri dosyaları depoya dahil edilir; gerçek kişilere ait yeni veri eklemeden önce paylaşım yetkisini kontrol edin.
-
-## Teslim kapsamı
-
-Kod, testler, iki hazır model, metadata, CSV dosyaları, requirements, örnek secrets, başlatıcı ve belgeler teslim edilir. `.streamlit/secrets.toml`, `.env` ve türevleri, `.venv/`, `__pycache__/`, `runtime/`, önbellek ve loglar dışlanır. Mevcut yerel kayıtlar silinmez. Push ve deploy kullanıcı talimatına kadar yapılmaz.
+* [Ayrıntılı Dashboard README](dashboard/README.md)
+* [Dağıtım ve Güvenlik Notları](dashboard/DEPLOYMENT.md)
+* [Streamlit Community Cloud Dokümantasyonu](https://docs.streamlit.io/deploy/streamlit-community-cloud)
